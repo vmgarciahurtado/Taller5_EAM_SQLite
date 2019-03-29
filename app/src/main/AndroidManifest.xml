@@ -17,8 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".vista.MainActivity" />
-        <activity android:name=".vista.ListaInventarioActivity" />
-        <activity android:name=".vista.RegistrarInventarioActivity"></activity>
+        <activity android:name=".vista.RegistrarMarcarActivity" android:parentActivityName=".vista.MainActivity"/>
+        <activity android:name=".vista.RegistrarUsuarioActivity" />
+        <activity android:name=".vista.ListaInventarioActivity" android:parentActivityName=".vista.MainActivity"/>
+        <activity android:name=".vista.RegistrarInventarioActivity" android:parentActivityName=".vista.MainActivity"></activity>
     </application>
 
 </manifest>
