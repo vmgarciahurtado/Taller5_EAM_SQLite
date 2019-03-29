@@ -37,12 +37,14 @@ public class Conexion extends SQLiteOpenHelper {
         );
         db.execSQL("create table marca(" +
                 "nombreMarca text, " +
+                "propietario text, " +
                 "descripcionMarcar text" +
                 ")"
         );
         db.execSQL("create table celular(" +
                 "IMEI text primary key," +
                 "marca text, " +
+                "propietario text, " +
                 "nombreCelular text" +
                 ")"
         );

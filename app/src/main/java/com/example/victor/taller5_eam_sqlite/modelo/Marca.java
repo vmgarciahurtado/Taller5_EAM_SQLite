@@ -6,14 +6,23 @@ package com.example.victor.taller5_eam_sqlite.modelo;
 
 public class Marca {
 
-    String marca,descripcion;
+    String marca,descripcion,propietario;
 
     public Marca() {
     }
 
-    public Marca(String marca, String descripcion) {
+    public Marca(String marca, String descripcion ,String propietario) {
         this.marca = marca;
         this.descripcion = descripcion;
+        this.propietario = propietario;
+    }
+
+    public String getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(String propietario) {
+        this.propietario = propietario;
     }
 
     public String getMarca() {
