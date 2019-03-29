@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".vista.ListaInventarioActivity" />
+        <activity android:name=".vista.RegistrarInventarioActivity"></activity>
     </application>
 
 </manifest>
