@@ -94,12 +94,13 @@
             android:id="@+id/btnRegistrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/darker_gray"
-            android:textColor="@android:color/background_light"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
-            android:text="Registrarse" />
+            android:background="@android:color/darker_gray"
+            android:text="Registrarse"
+            android:onClick="Registrar"
+            android:textColor="@android:color/background_light"
+            android:textSize="15dp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
