@@ -32,6 +32,42 @@ public class CelularDao {
         return conexion.ejecutarInsert("celular", registro);
     }
 
+    public Celular buscar(String propietario) {
+        Celular celular = null;
+        String consulta = "select IMEI, marca, propietario, nombreCelular from celular where propietario= " + propietario;
+        Cursor temp = conexion.ejecutarSearch(consulta);
+
+        //Encontro algun registro?
+        if (temp.getCount() > 0) {//Si el temp es mayor a cero es porque encontro un dato
+            temp.moveToFirst();//Se posiciona en el primer dato que encontro
+            celular = new Celular(temp.getString(0), temp.getString(1), temp.getString(2), propietario);
+            /*
+            El columnindex es la posicion que tiene ese campo en la tabla.
+            */
+
+        }
+        conexion.cerrarConexion();
+        return celular;
+    }
+
+    public boolean eliminar(Celular celular){
+        String tabla = "marca";
+        String condicion = "propietario= "+celular.getPropietario();
+        return conexion.ejecutarDelete(tabla, condicion);
+    }
+
+    public boolean modificar(Celular celular){
+        String tabla = "celular";
+        String condicion = "propietario= "+celular.getPropietario();
+
+        ContentValues registro = new ContentValues();
+
+        registro.put("IMEI", celular.getImei());
+        registro.put("marca", celular.getMarca());
+        registro.put("nombreCelular", celular.getNombre());
+
+        return conexion.ejecutarUpdate(tabla, condicion, registro);
+    }
 
     public List<Celular> listar(String nombreUsuario){
         List<Celular> listaCelulares = new ArrayList<>();

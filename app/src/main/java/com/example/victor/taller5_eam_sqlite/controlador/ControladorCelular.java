@@ -23,6 +23,18 @@ public class ControladorCelular {
         Celular celular = new Celular(imei,marca,nombre,propietario);
         return dao.guardar(celular);
     }
+    public Celular buscarCelular(String propietario){
+        return dao.buscar(propietario);
+    }
+
+    public boolean eliminarCelular(String propietario){
+        Celular celular = new Celular("", "", "", propietario);
+        return dao.eliminar(celular);
+    }
+    public boolean modificarCelular(String imei,String marca,String nombre,String propietario){
+        Celular celular = new Celular(imei,marca,nombre,propietario);
+        return dao.modificar(celular);
+    }
 
     public List<Celular> listarCelulares(String propietario){
         return dao.listar(propietario);

@@ -20,6 +20,7 @@ public class ControladorMarca {
     public Marca buscarMarca(String propietario){
         return dao.buscar(propietario);
     }
+
     public boolean eliminarMarca(String propietario){
         Marca marca = new Marca("", "", propietario);
         return dao.eliminar(marca);
