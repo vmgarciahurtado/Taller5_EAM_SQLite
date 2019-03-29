@@ -70,7 +70,7 @@
             android:textColor="@android:color/background_light"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:text="" />
 
         <EditText
@@ -87,7 +87,7 @@
             android:textColor="@android:color/background_light"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:text="" />
 
         <Button
