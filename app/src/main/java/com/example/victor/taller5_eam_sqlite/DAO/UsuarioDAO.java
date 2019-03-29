@@ -7,6 +7,8 @@ import android.database.Cursor;
 import com.example.victor.taller5_eam_sqlite.infraestructura.Conexion;
 import com.example.victor.taller5_eam_sqlite.modelo.Usuario;
 
+import java.util.ArrayList;
+
 public class UsuarioDAO {
     Conexion conexion;
 
@@ -61,6 +63,17 @@ public class UsuarioDAO {
         registro.put("password", usuario.getContraseña());
 
         return conexion.ejecutarUpdate(tabla, condicion, registro);
+    }
+
+    public boolean buscarRepetido(String usuario){
+        String consulta = "select nombreUsuario from usuario where nombreUsuario ="+usuario;
+        Cursor temp = conexion.ejecutarSearch(consulta);
+        if(temp.getCount()>0){
+            return true;
+        }else {
+            conexion.cerrarConexion();
+            return false;
+        }
     }
 
 }

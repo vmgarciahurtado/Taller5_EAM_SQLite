@@ -20,12 +20,18 @@ public class ControladorUsuario {
     public Usuario buscarUsuario(String nombreUsuario){
         return dao.buscar(nombreUsuario);
     }
+
     public boolean eliminarUsuario(String nombreUsuario){
         Usuario usuario = new Usuario("", nombreUsuario, "");
         return dao.eliminar(usuario);
     }
+
     public boolean modificarUsuario(String nombreCompleto, String nombreUsuario, String password){
         Usuario usuario = new Usuario(nombreCompleto, nombreUsuario, password);
         return dao.modificar(usuario);
+    }
+
+    public boolean buscarUsuarioRepetido(String usuario){
+        return dao.buscarRepetido(usuario);
     }
 }
