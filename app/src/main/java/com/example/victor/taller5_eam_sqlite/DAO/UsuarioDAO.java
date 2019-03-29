@@ -29,9 +29,9 @@ public class UsuarioDAO {
         return conexion.ejecutarInsert("usuario", registro);
     }
 
-    public Usuario buscar(String nombreUsuario) {
+    public Usuario buscar(String nombreUsuario,String contraseña) {
         Usuario usuario = null;
-        String consulta = "select nombreCompleto from usuario where nombreUsuario= " + nombreUsuario;
+        String consulta = "select nombreCompleto from usuario where nombreUsuario= " + nombreUsuario +"and password= " + contraseña;
         Cursor temp = conexion.ejecutarSearch(consulta);
 
         //Encontro algun registro?
