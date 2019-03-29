@@ -3,11 +3,14 @@ package com.example.victor.taller5_eam_sqlite.DAO;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.victor.taller5_eam_sqlite.infraestructura.Conexion;
 import com.example.victor.taller5_eam_sqlite.modelo.Usuario;
 
 import java.util.ArrayList;
+
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class UsuarioDAO {
     Conexion conexion;
@@ -31,13 +34,19 @@ public class UsuarioDAO {
 
     public Usuario buscar(String nombreUsuario,String contraseña) {
         Usuario usuario = null;
-        String consulta = "select nombreCompleto from usuario where nombreUsuario= " + nombreUsuario +"and password= " + contraseña;
+        String consulta = "select nombreCompleto from usuario where nombreUsuario=victor and password=victor ";
+        //String consulta = "select nombreCompleto from usuario where nombreUsuario= " + nombreUsuario + " and password= " + contraseña;
         Cursor temp = conexion.ejecutarSearch(consulta);
 
         //Encontro algun registro?
         if (temp.getCount() > 0) {//Si el temp es mayor a cero es porque encontro un dato
             temp.moveToFirst();//Se posiciona en el primer dato que encontro
-            usuario = new Usuario(temp.getString(0), nombreUsuario, temp.getString(2));
+            usuario = new Usuario(temp.getString(0), nombreUsuario, temp.getString(1));
+            //usuario = new Usuario(temp.getString(0), nombreUsuario, temp.getString(0));
+            Log.i("===============DATO 0",temp.getString(0));
+            Log.i("===============DATO 1",temp.getString(1));
+            Log.i("===============DATO 2",temp.getString(2));
+            Log.i("===============DATO 3",temp.getString(3));
             /*
             El columnindex es la posicion que tiene ese campo en la tabla.
             */
