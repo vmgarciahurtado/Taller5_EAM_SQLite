@@ -34,7 +34,7 @@
 
         <Spinner
             android:layout_width="match_parent"
-            android:id="@+id/spinnerMarcar"
+            android:id="@+id/spinnerMarca"
             android:layout_height="wrap_content">
         </Spinner>
 
@@ -55,27 +55,35 @@
         <Button
             android:layout_width="match_parent"
             android:text="Guardar"
+            android:onClick="guardar"
             android:id="@+id/btnGuardar"
             android:layout_height="wrap_content" />
 
         <Button
             android:layout_width="match_parent"
             android:text="Buscar"
+            android:onClick="buscar"
             android:id="@+id/btnBuscar"
             android:layout_height="wrap_content" />
+
         <Button
             android:layout_width="match_parent"
             android:text="Eliminar"
             android:id="@+id/btnEliminar"
+            android:onClick="eliminar"
             android:layout_height="wrap_content" />
+
         <Button
             android:layout_width="match_parent"
+            android:onClick="modificar"
             android:text="Modificar"
             android:id="@+id/btnModificar"
             android:layout_height="wrap_content" />
+
         <Button
             android:layout_width="match_parent"
             android:text="Listar"
+            android:onClick="listar"
             android:id="@+id/btnListar"
             android:layout_height="wrap_content" />
 
