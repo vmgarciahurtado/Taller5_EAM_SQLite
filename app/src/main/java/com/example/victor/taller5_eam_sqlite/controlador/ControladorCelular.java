@@ -1,8 +1,30 @@
 package com.example.victor.taller5_eam_sqlite.controlador;
 
+import android.app.Activity;
+
+import com.example.victor.taller5_eam_sqlite.DAO.CelularDao;
+import com.example.victor.taller5_eam_sqlite.modelo.Celular;
+
+import java.util.List;
+
 /**
  * Created by victor on 3/28/19.
  */
 
 public class ControladorCelular {
+
+    CelularDao dao;
+
+    public ControladorCelular(Activity activity){
+        dao = new CelularDao(activity);
+    }
+
+    public boolean guardarCelular(String imei,String marca,String nombre,String propietario){
+        Celular celular = new Celular(imei,marca,nombre,propietario);
+        return dao.guardar(celular);
+    }
+
+    public List<Celular> listarCelulares(String propietario){
+        return dao.listar(propietario);
+    }
 }

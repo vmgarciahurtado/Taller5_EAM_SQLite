@@ -6,11 +6,10 @@ package com.example.victor.taller5_eam_sqlite.modelo;
 
 public class Celular {
 
-    public Celular(String imei, String marca, String nombre, String usuario, String propietario) {
+    public Celular(String imei, String marca, String nombre, String propietario) {
         this.imei = imei;
         this.marca = marca;
         this.nombre = nombre;
-        this.usuario = usuario;
         this.propietario = propietario;
     }
 
@@ -18,7 +17,7 @@ public class Celular {
 
     }
 
-    String imei,marca,nombre,usuario,propietario;
+    String imei,marca,nombre,propietario;
 
     public String getPropietario() {
         return propietario;
@@ -52,11 +51,4 @@ public class Celular {
         this.nombre = nombre;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
 }
