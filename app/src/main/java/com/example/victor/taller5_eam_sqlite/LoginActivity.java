@@ -7,11 +7,11 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
-TextView txtTitUsuario;
+TextView TitUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        txtTitUsuario = (TextView) findViewById(R.id.titUsuario);
+        TitUsuario = (TextView) findViewById(R.id.titUsuario);
     }
 }
