@@ -46,4 +46,39 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="22dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="Guardar"
+            android:id="@+id/btnGuardar"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="Buscar"
+            android:id="@+id/btnBuscar"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="match_parent"
+            android:text="Eliminar"
+            android:id="@+id/btnEliminar"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="match_parent"
+            android:text="Modificar"
+            android:id="@+id/btnModificar"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="match_parent"
+            android:text="Listar"
+            android:id="@+id/btnListar"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 </LinearLayout>
