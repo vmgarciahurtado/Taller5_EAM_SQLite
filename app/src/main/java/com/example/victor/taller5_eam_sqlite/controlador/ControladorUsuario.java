@@ -17,8 +17,8 @@ public class ControladorUsuario {
         return dao.guardar(usuario);
 
     }
-    public Usuario buscarUsuario(String nombreUsuario){
-        return dao.buscar(nombreUsuario);
+    public Usuario buscarUsuario(String nombreUsuario,String contraseña){
+        return dao.buscar(nombreUsuario,contraseña);
     }
 
     public boolean eliminarUsuario(String nombreUsuario){
