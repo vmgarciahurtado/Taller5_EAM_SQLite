@@ -1,80 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.victor.taller5_eam_sqlite.vista.Login">
+    android:orientation="vertical"
+    tools:context="com.example.victor.taller5_eam_sqlite.vista.LoginActivity">
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="22dp"
+        android:text="Bienvenido a la aplicacion"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/campousuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:hint="ingrese su usuario" />
 
-            <TextView
-                android:id="@+id/titBienvenido"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25dp"
-                android:gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:textColor="@android:color/background_light"
-                android:layout_weight="1"
-                android:text="Bienvenido" />
-
-            <TextView
-                android:id="@+id/titUsuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:text=""
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="25dp" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnRegistrarMarca"
+        <EditText
+            android:id="@+id/campoContraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/background_light"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Registrar marca celular" />
+            android:hint="ingrese su contraseña"
+            android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/btnNuevoIngresoInventario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/background_light"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Nuevo registro inventario" />
-
-        <Button
-            android:id="@+id/btnListarInventario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/background_dark"
-            android:textColor="@android:color/background_light"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="Ver listado inventario" />
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btnIngresar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="Ingresar" />
+
+</LinearLayout>
