@@ -45,12 +45,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:text="Ingresar" />
-    
+
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
+        android:onClick="registrar"
         android:text="Registrarse" />
 
 </LinearLayout>

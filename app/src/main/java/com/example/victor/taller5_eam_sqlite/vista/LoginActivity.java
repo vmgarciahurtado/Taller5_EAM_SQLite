@@ -1,6 +1,7 @@
 package com.example.victor.taller5_eam_sqlite.vista;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,6 +50,11 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Verifique los campos", Toast.LENGTH_SHORT).show();
         }
         
+        }
+
+        public void registrar(View view){
+            Intent intent = new Intent(this, RegistrarUsuarioActivity.class);
+            startActivity(intent);
         }
         
 }
