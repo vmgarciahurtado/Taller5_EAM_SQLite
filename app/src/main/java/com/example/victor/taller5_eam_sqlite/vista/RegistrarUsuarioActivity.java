@@ -1,8 +1,10 @@
-package com.example.victor.taller5_eam_sqlite;
+package com.example.victor.taller5_eam_sqlite.vista;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+
+import com.example.victor.taller5_eam_sqlite.R;
 
 public class RegistrarUsuarioActivity extends AppCompatActivity {
 EditText txtNombreCompleto, txtUsuario, txtPassword, txtVerPassword;
