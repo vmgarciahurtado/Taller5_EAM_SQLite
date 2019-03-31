@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
 
-                //Toast.makeText(this, "Hola" + usuario.getNombre(), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "No se encuentra el usuario", Toast.LENGTH_SHORT).show();
             }

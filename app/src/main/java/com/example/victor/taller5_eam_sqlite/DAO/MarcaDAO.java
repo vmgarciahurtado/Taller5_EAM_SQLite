@@ -59,4 +59,17 @@ public class MarcaDAO {
 
         return conexion.ejecutarUpdate(tabla, condicion, registro);
     }
+
+    public Marca cargarSpinner(String propietario){
+        Marca marca = null;
+        String consulta = "select nombreMarca from marca where propietario = "+propietario;
+        Cursor temp = conexion.ejecutarSearch(consulta);
+
+        if(temp.getCount()>0){
+            temp.moveToFirst();
+            marca = new Marca(temp.getString(0));
+        }
+        conexion.cerrarConexion();
+        return marca;
+    }
 }

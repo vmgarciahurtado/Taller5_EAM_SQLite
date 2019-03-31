@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtBienvenido = findViewById(R.id.txtBienvenido);
+        txtBienvenido = findViewById(R.id.titUsuario);
 
         SharedPreferences preferences = Objects.requireNonNull(this).getSharedPreferences("nombre", Context.MODE_PRIVATE);
         String nombre = preferences.getString("nombre", "No existe el valor");
