@@ -76,7 +76,7 @@ public class CelularDao {
 
         if (temp.moveToFirst()){
             do {
-                Celular celular = new Celular(temp.getString(0),temp.getString(1),temp.getString(2),(temp.getString(3)));//,(temp.getString(3)),temp.getString(4)
+                Celular celular = new Celular(temp.getString(0),temp.getString(1),temp.getString(2),"");//,(temp.getString(3)),temp.getString(4)
                 listaCelulares.add(celular);
             }while (temp.moveToNext());
         }
