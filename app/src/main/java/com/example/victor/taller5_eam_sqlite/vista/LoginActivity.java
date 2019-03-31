@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 nombre.commit();
 
                 SharedPreferences preferencesUsuario = getSharedPreferences("usuario", Context.MODE_PRIVATE);
-                SharedPreferences.Editor user = preferencesNombre.edit();
+                SharedPreferences.Editor user = preferencesUsuario.edit();
                 user.putString("usuario", usuario.getUsuario());
                 user.commit();
 

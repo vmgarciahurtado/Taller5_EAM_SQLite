@@ -43,11 +43,10 @@ ControladorMarca controlador;
                     } else {
                         Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
                     }
-                    //Nada
+
                 //} else {
                 //    Toast.makeText(getApplicationContext(), "El nombre de usuario ya esta en uso", Toast.LENGTH_SHORT).show();
                 //}
-
         }
     }
 
