@@ -29,7 +29,5 @@ public class ControladorMarca {
         Marca marca  = new Marca(nombreMarca, descripcionMarca, propietario);
         return dao.modificar(marca);
     }
-    public Marca listarSpinner(String propietario){
-        return dao.cargarSpinner(propietario);
-    }
+
 }
