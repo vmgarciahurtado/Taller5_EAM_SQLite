@@ -39,23 +39,31 @@ public class LoginActivity extends AppCompatActivity {
         usu = campoUsuario.getText().toString();
         contraseña = campoContraseña.getText().toString();
         
-       // if (!usu.equals("") && !contraseña.equals("") ){
-            Usuario usuario = controlador.buscarUsuario("victorsmanuels","123");
+        if (!usu.equals("") && !contraseña.equals("") ){
+            Usuario usuario = controlador.buscarUsuario(usu,contraseña);
             
             if (usuario != null) {
-             /*   SharedPreferences preferencesNombre = getSharedPreferences("nombre", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferencesNombre.edit();
-                editor.putString("nombre", usuario.getNombre());
-                editor.commit();
-                Toast.makeText(this, ""+usuario.getNombre(), Toast.LENGTH_SHORT).show();*/
+                SharedPreferences preferencesNombre = getSharedPreferences("nombre", Context.MODE_PRIVATE);
+                SharedPreferences.Editor nombre = preferencesNombre.edit();
+                nombre.putString("nombre", usuario.getNombre());
+                nombre.commit();
 
-                Toast.makeText(this, "Hola" + usuario.getNombre(), Toast.LENGTH_SHORT).show();
+                SharedPreferences preferencesUsuario = getSharedPreferences("usuario", Context.MODE_PRIVATE);
+                SharedPreferences.Editor user = preferencesNombre.edit();
+                user.putString("usuario", usuario.getUsuario());
+                user.commit();
+
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+
+                //Toast.makeText(this, "Hola" + usuario.getNombre(), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "No se encuentra el usuario", Toast.LENGTH_SHORT).show();
             }
-      //  }else {
-            //Toast.makeText(this, "Verifique los campos", Toast.LENGTH_SHORT).show();
-        //}
+        }else {
+            Toast.makeText(this, "Verifique los campos", Toast.LENGTH_SHORT).show();
+        }
         
         }
 

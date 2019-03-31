@@ -29,14 +29,15 @@ public class UsuarioDAO {
         Log.i("******CONTRASENA",contraseña.toString());
 
         Usuario usuario = null;
-        String consulta = "select nombreCompleto from usuario where nombreUsuario = "+"'"+nombreUsuario+"'" + " and password = "+"'"+contraseña+"'";
+        String consulta = "select nombreCompleto,nombreUsuario from usuario where nombreUsuario = "+"'"+nombreUsuario+"'" + " and password = "+"'"+contraseña+"'";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
       //  try {
          if (temp.getCount() > 0){//Si el temp es mayor a cero es porque encontro un dato
                 temp.moveToFirst();//Se posiciona en el primer dato que encontro
-                usuario = new Usuario(temp.getString(0),"","");
+                usuario = new Usuario(temp.getString(0),temp.getString(1),"");
                 Log.i("===============DATO 0", temp.getString(0));
+                Log.i("===============DATO 1", temp.getString(1));
             /*
             El columnindex es la posicion que tiene ese campo en la tabla.
             */
@@ -70,7 +71,6 @@ public class UsuarioDAO {
 
     public boolean buscarRepetido(String usuario) {
         boolean respuesta =  false;
-
         try {
             String consulta = "select nombreUsuario from usuario where nombreUsuario = "+"'"+usuario+"'";
             Cursor temp = conexion.ejecutarSearch(consulta);
