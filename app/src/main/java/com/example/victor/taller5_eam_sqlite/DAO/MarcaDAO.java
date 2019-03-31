@@ -67,7 +67,7 @@ public class MarcaDAO {
 
         if(temp.getCount()>0){
             temp.moveToFirst();
-            marca = new Marca(temp.getString(0));
+            marca = new Marca(temp.getString(0), temp.getString(1), temp.getString(2));
         }
         conexion.cerrarConexion();
         return marca;
