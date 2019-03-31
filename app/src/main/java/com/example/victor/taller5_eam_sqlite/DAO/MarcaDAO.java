@@ -6,7 +6,11 @@ import android.database.Cursor;
 import android.util.Log;
 
 import com.example.victor.taller5_eam_sqlite.infraestructura.Conexion;
+import com.example.victor.taller5_eam_sqlite.modelo.Celular;
 import com.example.victor.taller5_eam_sqlite.modelo.Marca;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MarcaDAO {
     Conexion conexion;
@@ -58,18 +62,17 @@ public class MarcaDAO {
         return conexion.ejecutarUpdate(tabla, condicion, registro);
     }
 
-    public Marca cargarSpinner(String propietario){
-        Marca marca = null;
+    public List<Marca> listar(String propietario){
+        List<Marca> listaMarca = new ArrayList<>();
         String consulta = "select nombreMarca from marca where propietario = '"+propietario+"'";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
-        if(temp.getCount()>0) {
-            temp.moveToFirst();
-            marca = new Marca(temp.getString(0));
-        }else{
-            Log.i("ERROR", "No se encontraron datos para cargar el spinner marcaDAO");
+        if (temp.moveToFirst()){
+            do {
+                Marca marca = new Marca(temp.getString(0));//,(temp.getString(3)),temp.getString(4)
+                listaMarca.add(marca);
+            }while (temp.moveToNext());
         }
-        conexion.cerrarConexion();
-        return marca;
+        return listaMarca;
     }
 }

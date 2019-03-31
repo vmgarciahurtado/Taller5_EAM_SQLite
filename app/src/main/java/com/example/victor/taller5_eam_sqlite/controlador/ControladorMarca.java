@@ -3,7 +3,10 @@ package com.example.victor.taller5_eam_sqlite.controlador;
 import android.app.Activity;
 
 import com.example.victor.taller5_eam_sqlite.DAO.MarcaDAO;
+import com.example.victor.taller5_eam_sqlite.modelo.Celular;
 import com.example.victor.taller5_eam_sqlite.modelo.Marca;
+
+import java.util.List;
 
 public class ControladorMarca {
     MarcaDAO dao;
@@ -29,7 +32,7 @@ public class ControladorMarca {
         Marca marca  = new Marca(nombreMarca, descripcionMarca, propietario);
         return dao.modificar(marca);
     }
-    public Marca listarSpinner(String propietario){
-        return dao.cargarSpinner(propietario);
+    public List<Marca> listarMarca(String propietario){
+        return dao.listar(propietario);
     }
 }

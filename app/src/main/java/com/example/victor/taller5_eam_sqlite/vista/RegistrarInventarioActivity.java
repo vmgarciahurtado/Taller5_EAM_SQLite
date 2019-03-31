@@ -16,6 +16,7 @@ import com.example.victor.taller5_eam_sqlite.controlador.ControladorMarca;
 import com.example.victor.taller5_eam_sqlite.modelo.Marca;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class RegistrarInventarioActivity extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
     Spinner spinnerMarcar;
     ControladorCelular controlador;
     ControladorMarca controladorMarca;
-    ArrayList<Marca> marcas;
+    List<Marca> marcas;
     ArrayList<String>listaMarca;
     String propietario;
 
@@ -40,11 +41,9 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         controlador = new ControladorCelular(this);
         controladorMarca = new ControladorMarca(this);
         consultarMarcas();
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaMarca);
-        spinnerMarcar.setAdapter(adapter);
     }
 
-    public void guardar(View view, String propietario) {
+    public void guardar(View view) {
         String IMEI = campoImei.getText().toString();
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
@@ -68,20 +67,17 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
     }
 
     private void consultarMarcas() {
-        marcas = new ArrayList<Marca>();
-        Marca marca = controladorMarca.listarSpinner(propietario);
-        if(marca!=null){
-            marcas.add(marca);
+        marcas = controladorMarca.listarMarca(propietario);
+        List<String>comboAdapter = new ArrayList<>();
+        ArrayAdapter<String> adapter;
+        if(marcas.size()>0){
+            for (int i = 0; i<marcas.size(); i++){
+                comboAdapter.add(marcas.get(i).getMarca());
+            }
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, comboAdapter);
+            spinnerMarcar.setAdapter(adapter);
         }
-        obtenerLista();
     }
 
-    private void obtenerLista() {
-        listaMarca = new ArrayList<String>();
-        listaMarca.add("Selecciona una marca");
-        for (int i=0; i<marcas.size();i++){
-            listaMarca.add(marcas.get(i).getMarca());
-        }
-    }
 
 }
