@@ -16,6 +16,7 @@ public class MarcaDAO {
 
     public boolean guardar(Marca marca) {
         //Objeto que contendra la info a almacenar
+
         ContentValues registro = new ContentValues();
         registro.put("nombreMarca", marca.getMarca());
         registro.put("propietario", marca.getPropietario());
