@@ -29,40 +29,25 @@ public class UsuarioDAO {
         Log.i("******CONTRASENA",contraseña.toString());
 
         Usuario usuario = null;
-        //String consulta = "select nombreCompleto,nombreUsuario,password " + "from usuario where " +" " +  " usuario.nombreUsuario = "+"nombreUsuario";
-        String consulta = "select nombreCompleto from usuario where nombreUsuario = 'victorsmanuels'";
-        //String consulta = "select nombreCompleto " + " " + " from " + " " + " usuario " + " " + " where " + " " + " nombreUsuario = " + nombreUsuario;
-       // String consulta = "select nombreCompleto from usuario where nombreUsuario= " + nombreUsuario + " and password= " + contraseña;
+        String consulta = "select nombreCompleto from usuario where nombreUsuario = "+"'"+nombreUsuario+"'" + " and password = "+"'"+contraseña+"'";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
       //  try {
          if (temp.getCount() > 0){//Si el temp es mayor a cero es porque encontro un dato
                 temp.moveToFirst();//Se posiciona en el primer dato que encontro
                 usuario = new Usuario(temp.getString(0),"","");
-
-                  Log.i("===============DATO 0", temp.getString(0));
-//                Log.i("===============DATO 1", temp.getString(1));
-//                Log.i("===============DATO 2", temp.getString(2));
-//                Log.i("===============DATO 3", temp.getString(3));
-
-
-                //usuario = new Usuario(temp.getString(0), nombreUsuario, temp.getString(0));
-
+                Log.i("===============DATO 0", temp.getString(0));
             /*
             El columnindex es la posicion que tiene ese campo en la tabla.
             */
             }
-
             conexion.cerrarConexion();
       //  } catch (Exception e) {
-      //      Log.i("************ ERROr", e.toString());
+      //      Log.i("************ ERROR", e.toString());
       //  }
-
-
         //Encontro algun registro?
         return usuario;
     }
-
 
     public boolean eliminar(Usuario usuario) {
         String tabla = "usuario";
@@ -84,11 +69,10 @@ public class UsuarioDAO {
 
 
     public boolean buscarRepetido(String usuario) {
-
         boolean respuesta =  false;
 
         try {
-            String consulta = "select nombreUsuario from usuario where nombreUsuario =" + usuario;
+            String consulta = "select nombreUsuario from usuario where nombreUsuario = "+"'"+usuario+"'";
             Cursor temp = conexion.ejecutarSearch(consulta);
             if (temp.getCount() > 0) {
                 respuesta = true;
@@ -101,7 +85,6 @@ public class UsuarioDAO {
         } catch (Exception e) {
             Log.i("********ERROR REPETIDO", e.toString());
         }
-
         return respuesta;
     }
 
