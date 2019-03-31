@@ -29,4 +29,5 @@ public class ControladorMarca {
         Marca marca  = new Marca(nombreMarca, descripcionMarca, propietario);
         return dao.modificar(marca);
     }
+
 }

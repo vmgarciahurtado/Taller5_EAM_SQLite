@@ -71,7 +71,7 @@ public class CelularDao {
 
     public List<Celular> listar(String nombreUsuario){
         List<Celular> listaCelulares = new ArrayList<>();
-        String consulta = "select IMEI,marca,nombreCelular from celular where propietario= " + nombreUsuario;
+        String consulta = "select IMEI,marca,nombreCelular from celular where propietario = "+"'"+nombreUsuario+"'";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
         if (temp.moveToFirst()){
