@@ -71,12 +71,12 @@ public class CelularDao {
 
     public List<Celular> listar(String nombreUsuario){
         List<Celular> listaCelulares = new ArrayList<>();
-        String consulta = "select IMEI,marca,nombreCelular from celular where propietario = "+"'"+nombreUsuario+"'";
+        String consulta = "select IMEI,marca,nombreCelular,propietario from celular where propietario = "+"'"+nombreUsuario+"'";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
         if (temp.moveToFirst()){
             do {
-                Celular celular = new Celular(temp.getString(0),temp.getString(1),temp.getString(2),"");//,(temp.getString(3)),temp.getString(4)
+                Celular celular = new Celular(temp.getString(0),temp.getString(1),temp.getString(2),temp.getString(3));//,(temp.getString(3)),temp.getString(4)
                 listaCelulares.add(celular);
             }while (temp.moveToNext());
         }
