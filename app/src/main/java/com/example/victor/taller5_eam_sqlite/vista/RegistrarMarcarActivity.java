@@ -14,8 +14,8 @@ import com.example.victor.taller5_eam_sqlite.controlador.ControladorMarca;
 import java.util.Objects;
 
 public class RegistrarMarcarActivity extends AppCompatActivity {
-EditText txtNombreMarca, txtDescripcion;
-ControladorMarca controlador;
+    EditText txtNombreMarca, txtDescripcion;
+    ControladorMarca controlador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +36,13 @@ ControladorMarca controlador;
         if (nombreMarca.equals("") || descripcion.equals("") || propietario.equals("")) {
             Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT).show();
         } else {
-                //if (controlador.guardarMarca(nombreUsuario) == false) {
-                    if (controlador.guardarMarca(nombreMarca,propietario,descripcion)) {
-                        limpiarCampos();
-                        Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
-                    }
 
-                //} else {
-                //    Toast.makeText(getApplicationContext(), "El nombre de usuario ya esta en uso", Toast.LENGTH_SHORT).show();
-                //}
+            if (controlador.guardarMarca(nombreMarca, propietario, descripcion)) {
+                limpiarCampos();
+                Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
