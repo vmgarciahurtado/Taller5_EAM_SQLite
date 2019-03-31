@@ -11,7 +11,11 @@ public class Marca {
     public Marca() {
     }
 
-    public Marca(String marca, String descripcion ,String propietario) {
+    public Marca(String marca) {
+        this.marca = marca;
+    }
+
+    public Marca(String marca, String descripcion , String propietario) {
         this.marca = marca;
         this.descripcion = descripcion;
         this.propietario = propietario;

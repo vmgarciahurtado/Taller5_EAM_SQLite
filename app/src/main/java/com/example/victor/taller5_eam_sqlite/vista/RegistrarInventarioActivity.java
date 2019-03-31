@@ -25,6 +25,7 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
     ControladorCelular controlador;
     ControladorMarca controladorMarca;
     ArrayList<Marca> marcas;
+    ArrayList<String>listaMarca;
     String propietario;
 
     @Override
@@ -32,13 +33,15 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_inventario);
         SharedPreferences preferences = Objects.requireNonNull(this).getSharedPreferences("usuario", Context.MODE_PRIVATE);
-        String propietario = preferences.getString("usuario", "No existe el valor");
+        propietario = preferences.getString("usuario", "No existe el valor");
         campoImei = findViewById(R.id.campoImei);
         campoNombre = findViewById(R.id.campoNombre);
         spinnerMarcar = findViewById(R.id.spinnerMarca);
         controlador = new ControladorCelular(this);
         controladorMarca = new ControladorMarca(this);
-        cargarSpinner(propietario);
+        consultarMarcas();
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaMarca);
+        spinnerMarcar.setAdapter(adapter);
     }
 
     public void guardar(View view, String propietario) {
@@ -64,11 +67,21 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
     public void listar(View view) {
     }
 
-    public void cargarSpinner(String propietario) {
+    private void consultarMarcas() {
         marcas = new ArrayList<Marca>();
-        marcas.add(controladorMarca.listarSpinner(propietario));
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, marcas);
-        spinnerMarcar.setAdapter(adapter);
+        Marca marca = controladorMarca.listarSpinner(propietario);
+        if(marca!=null){
+            marcas.add(marca);
+        }
+        obtenerLista();
+    }
+
+    private void obtenerLista() {
+        listaMarca = new ArrayList<String>();
+        listaMarca.add("Selecciona una marca");
+        for (int i=0; i<marcas.size();i++){
+            listaMarca.add(marcas.get(i).getMarca());
+        }
     }
 
 }

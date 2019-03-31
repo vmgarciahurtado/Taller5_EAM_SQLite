@@ -3,6 +3,7 @@ package com.example.victor.taller5_eam_sqlite.DAO;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.victor.taller5_eam_sqlite.infraestructura.Conexion;
 import com.example.victor.taller5_eam_sqlite.modelo.Marca;
@@ -26,16 +27,13 @@ public class MarcaDAO {
 
     public Marca buscar(String propietario) {
         Marca marca = null;
-        String consulta = "select nombreMarca, descripcionMarca from Marca where propietario= " + propietario;
+        String consulta = "select nombreMarca, descripcionMarca from Marca where propietario= '" + propietario+"'";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
         //Encontro algun registro?
         if (temp.getCount() > 0) {//Si el temp es mayor a cero es porque encontro un dato
             temp.moveToFirst();//Se posiciona en el primer dato que encontro
             marca = new Marca(temp.getString(0), temp.getString(1), propietario);
-            /*
-            El columnindex es la posicion que tiene ese campo en la tabla.
-            */
 
         }
         conexion.cerrarConexion();
@@ -62,12 +60,14 @@ public class MarcaDAO {
 
     public Marca cargarSpinner(String propietario){
         Marca marca = null;
-        String consulta = "select nombreMarca from marca where propietario = "+propietario;
+        String consulta = "select nombreMarca from marca where propietario = '"+propietario+"'";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
-        if(temp.getCount()>0){
+        if(temp.getCount()>0) {
             temp.moveToFirst();
-            marca = new Marca(temp.getString(0), temp.getString(1), propietario);
+            marca = new Marca(temp.getString(0));
+        }else{
+            Log.i("ERROR", "No se encontraron datos para cargar el spinner marcaDAO");
         }
         conexion.cerrarConexion();
         return marca;
