@@ -13,6 +13,12 @@ public class Celular {
         this.propietario = propietario;
     }
 
+    public Celular(String imei, String marca, String nombre) {
+        this.imei = imei;
+        this.marca = marca;
+        this.nombre = nombre;
+    }
+
     public Celular() {
 
     }

@@ -52,11 +52,11 @@ public class CelularDao {
 
     public Celular buscarPorImei(String imei) {
         Celular celular = null;
-        String consulta = "select IMEI, marca, propietario, nombreCelular form celular where IMEI= '" + imei+"'";
+        String consulta = "select IMEI, marca, nombreCelular from celular where IMEI= '" + imei+"'";
         Cursor temp = conexion.ejecutarSearch(consulta);
         if (temp.getCount() >= 0) {
             temp.moveToFirst();
-            celular = new Celular(imei, temp.getString(1), temp.getString(2), temp.getString(3));
+            celular = new Celular(imei, temp.getString(1), temp.getString(2));
         }
         conexion.cerrarConexion();
         return celular;
