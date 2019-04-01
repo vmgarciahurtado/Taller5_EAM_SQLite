@@ -26,6 +26,7 @@ public class ControladorCelular {
     public Celular buscarCelular(String propietario){
         return dao.buscar(propietario);
     }
+
     public Celular buscarPorImei(String IMEI){
         return dao.buscarPorImei(IMEI);
     }
@@ -34,6 +35,12 @@ public class ControladorCelular {
         Celular celular = new Celular("", "", "", propietario);
         return dao.eliminar(celular);
     }
+
+    public boolean eliminarPorImei(String IMEI){
+        Celular celular = new Celular(IMEI,"","","");
+        return  dao.eliminarPorImei(celular);
+    }
+
     public boolean modificarCelular(String imei,String marca,String nombre,String propietario){
         Celular celular = new Celular(imei,marca,nombre,propietario);
         return dao.modificar(celular);

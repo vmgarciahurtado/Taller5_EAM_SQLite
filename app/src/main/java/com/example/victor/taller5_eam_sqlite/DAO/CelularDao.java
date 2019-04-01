@@ -52,7 +52,7 @@ public class CelularDao {
 
     public Celular buscarPorImei(String imei) {
         Celular celular = null;
-        String consulta = "select IMEI, marca, nombreCelular from celular where IMEI= '" + imei+"'";
+        String consulta = "select IMEI, marca, nombreCelular from celular where IMEI= '" + imei + "'";
         Cursor temp = conexion.ejecutarSearch(consulta);
         if (temp.getCount() >= 0) {
             temp.moveToFirst();
@@ -67,6 +67,11 @@ public class CelularDao {
         String condicion = "propietario= " + celular.getPropietario();
         return conexion.ejecutarDelete(tabla, condicion);
     }
+    public boolean eliminarPorImei(Celular celular){
+        String tabla = "celular";
+        String condicion = "IMEI= "+celular.getImei();
+        return conexion.ejecutarDelete(tabla, condicion);
+    }
 
     public boolean modificar(Celular celular) {
         String tabla = "celular";
@@ -76,6 +81,19 @@ public class CelularDao {
 
         registro.put("IMEI", celular.getImei());
         registro.put("marca", celular.getMarca());
+        registro.put("nombreCelular", celular.getNombre());
+
+        return conexion.ejecutarUpdate(tabla, condicion, registro);
+    }
+
+    public boolean modificarPorImei(Celular celular) {
+        String tabla = "celular";
+        String condicion = "IMEI= " + celular.getImei();
+
+        ContentValues registro = new ContentValues();
+
+        registro.put("marca", celular.getMarca());
+        registro.put("propietario", celular.getPropietario());
         registro.put("nombreCelular", celular.getNombre());
 
         return conexion.ejecutarUpdate(tabla, condicion, registro);

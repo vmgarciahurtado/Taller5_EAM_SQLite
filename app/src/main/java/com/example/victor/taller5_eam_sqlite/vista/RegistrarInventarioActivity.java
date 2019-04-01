@@ -50,6 +50,7 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
         if (controlador.guardarCelular(IMEI, marca, nombre, propietario)) {
+            vaciarCampos();
             Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
@@ -62,7 +63,9 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
             Celular celular = controlador.buscarPorImei(IMEI);
             if (celular != null) {
                 campoImei.setEnabled(false);
-                // spinnerMarcar.
+                //  for (int i = 0; i<spinnerMarcar.getCount();i++){
+                //   spinnerMarcar.getItemAtPosition(i).toString().equalsIgnoreCase(celular.getMarca());
+                // }
                 campoNombre.setText(celular.getNombre());
             } else {
                 Toast.makeText(getApplicationContext(), "No existe ningun celular con el IMEI " + IMEI, Toast.LENGTH_SHORT).show();
@@ -72,23 +75,40 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         }
     }
 
-    /*public void eliminar(View view) {
+    public void eliminar(View view) {
         String IMEI = campoImei.getText().toString();
         if (!IMEI.equals("")) {
-if(controlador.eliminarCelular())
+            if (controlador.eliminarPorImei(IMEI)) {
+                vaciarCampos();
+                Toast.makeText(getApplicationContext(), "Los datos se eliminaron correctamente", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Error al eliminar", Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(getApplicationContext(), "El campo IMEI esta vacio", Toast.LENGTH_SHORT).show();
         }
-
-    }*/
+    }
 
     public void modificar(View view) {
-
+        String IMEI = campoImei.getText().toString();
+        String marca = spinnerMarcar.getSelectedItem().toString();
+        String nombre = campoNombre.getText().toString();
+        if(IMEI!=null || marca !=null || nombre!=null){
+            if(controlador.modificarCelular(IMEI, marca, nombre, propietario)){
+                vaciarCampos();
+                Toast.makeText(getApplicationContext(), "Los datos se modificaron correctamente", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(), "Error al modificar el celular, intenta más tarde", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void listar(View view) {
         Intent intent = new Intent(this, ListaInventarioActivity.class);
         startActivity(intent);
+        vaciarCampos();
     }
 
 
@@ -103,6 +123,12 @@ if(controlador.eliminarCelular())
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, comboAdapter);
             spinnerMarcar.setAdapter(adapter);
         }
+    }
+
+    public void vaciarCampos() {
+        campoImei.setEnabled(true);
+        campoImei.setText("");
+        campoNombre.setText("");
     }
 
 
