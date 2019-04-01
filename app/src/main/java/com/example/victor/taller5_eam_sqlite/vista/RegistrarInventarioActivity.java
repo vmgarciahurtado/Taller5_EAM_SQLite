@@ -1,6 +1,7 @@
 package com.example.victor.taller5_eam_sqlite.vista;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.victor.taller5_eam_sqlite.R;
 import com.example.victor.taller5_eam_sqlite.controlador.ControladorCelular;
 import com.example.victor.taller5_eam_sqlite.controlador.ControladorMarca;
+import com.example.victor.taller5_eam_sqlite.modelo.Celular;
 import com.example.victor.taller5_eam_sqlite.modelo.Marca;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
     ControladorCelular controlador;
     ControladorMarca controladorMarca;
     List<Marca> marcas;
-    ArrayList<String>listaMarca;
+    ArrayList<String> listaMarca;
     String propietario;
 
     @Override
@@ -55,23 +57,47 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
     }
 
     public void buscar(View view) {
+        String IMEI = campoImei.getText().toString();
+        if (!IMEI.equals("")) {
+            Celular celular = controlador.buscarPorImei(IMEI);
+            if (celular != null) {
+                campoImei.setEnabled(false);
+                // spinnerMarcar.
+                campoNombre.setText(celular.getNombre());
+            } else {
+                Toast.makeText(getApplicationContext(), "No existe ningun celular con el IMEI " + IMEI, Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "El campo IMEI esta vacio", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void eliminar(View view) {
-    }
+    /*public void eliminar(View view) {
+        String IMEI = campoImei.getText().toString();
+        if (!IMEI.equals("")) {
+if(controlador.eliminarCelular())
+        } else {
+            Toast.makeText(getApplicationContext(), "El campo IMEI esta vacio", Toast.LENGTH_SHORT).show();
+        }
+
+    }*/
 
     public void modificar(View view) {
+
     }
 
     public void listar(View view) {
+        Intent intent = new Intent(this, ListaInventarioActivity.class);
+        startActivity(intent);
     }
+
 
     private void consultarMarcas() {
         marcas = controladorMarca.listarMarca(propietario);
-        List<String>comboAdapter = new ArrayList<>();
+        List<String> comboAdapter = new ArrayList<>();
         ArrayAdapter<String> adapter;
-        if(marcas.size()>0){
-            for (int i = 0; i<marcas.size(); i++){
+        if (marcas.size() > 0) {
+            for (int i = 0; i < marcas.size(); i++) {
                 comboAdapter.add(marcas.get(i).getMarca());
             }
             adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, comboAdapter);

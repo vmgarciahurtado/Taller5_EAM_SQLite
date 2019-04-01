@@ -50,15 +50,27 @@ public class CelularDao {
         return celular;
     }
 
-    public boolean eliminar(Celular celular){
+    public Celular buscarPorImei(String imei) {
+        Celular celular = null;
+        String consulta = "select IMEI, marca, propietario, nombreCelular form celular where IMEI= '" + imei+"'";
+        Cursor temp = conexion.ejecutarSearch(consulta);
+        if (temp.getCount() >= 0) {
+            temp.moveToFirst();
+            celular = new Celular(imei, temp.getString(1), temp.getString(2), temp.getString(3));
+        }
+        conexion.cerrarConexion();
+        return celular;
+    }
+
+    public boolean eliminar(Celular celular) {
         String tabla = "marca";
-        String condicion = "propietario= "+celular.getPropietario();
+        String condicion = "propietario= " + celular.getPropietario();
         return conexion.ejecutarDelete(tabla, condicion);
     }
 
-    public boolean modificar(Celular celular){
+    public boolean modificar(Celular celular) {
         String tabla = "celular";
-        String condicion = "propietario= "+celular.getPropietario();
+        String condicion = "propietario= " + celular.getPropietario();
 
         ContentValues registro = new ContentValues();
 
@@ -69,16 +81,16 @@ public class CelularDao {
         return conexion.ejecutarUpdate(tabla, condicion, registro);
     }
 
-    public List<Celular> listar(String nombreUsuario){
+    public List<Celular> listar(String nombreUsuario) {
         List<Celular> listaCelulares = new ArrayList<>();
-        String consulta = "select IMEI,marca,nombreCelular,propietario from celular where propietario = "+"'"+nombreUsuario+"'";
+        String consulta = "select IMEI,marca,nombreCelular,propietario from celular where propietario = " + "'" + nombreUsuario + "'";
         Cursor temp = conexion.ejecutarSearch(consulta);
 
-        if (temp.moveToFirst()){
+        if (temp.moveToFirst()) {
             do {
-                Celular celular = new Celular(temp.getString(0),temp.getString(1),temp.getString(2),temp.getString(3));//,(temp.getString(3)),temp.getString(4)
+                Celular celular = new Celular(temp.getString(0), temp.getString(1), temp.getString(2), temp.getString(3));//,(temp.getString(3)),temp.getString(4)
                 listaCelulares.add(celular);
-            }while (temp.moveToNext());
+            } while (temp.moveToNext());
         }
         return listaCelulares;
     }
