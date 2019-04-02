@@ -3,6 +3,7 @@ package com.example.victor.taller5_eam_sqlite.DAO;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.example.victor.taller5_eam_sqlite.infraestructura.Conexion;
 import com.example.victor.taller5_eam_sqlite.modelo.Celular;
@@ -86,19 +87,6 @@ public class CelularDao {
         return conexion.ejecutarUpdate(tabla, condicion, registro);
     }
 
-    public boolean modificarPorImei(Celular celular) {
-        String tabla = "celular";
-        String condicion = "IMEI= " + celular.getImei();
-
-        ContentValues registro = new ContentValues();
-
-        registro.put("marca", celular.getMarca());
-        registro.put("propietario", celular.getPropietario());
-        registro.put("nombreCelular", celular.getNombre());
-
-        return conexion.ejecutarUpdate(tabla, condicion, registro);
-    }
-
     public List<Celular> listar(String nombreUsuario) {
         List<Celular> listaCelulares = new ArrayList<>();
         String consulta = "select IMEI,marca,nombreCelular,propietario from celular where propietario = " + "'" + nombreUsuario + "'";
@@ -111,6 +99,23 @@ public class CelularDao {
             } while (temp.moveToNext());
         }
         return listaCelulares;
+    }
+
+    public boolean buscarRepetido(String IMEI) {
+        boolean respuesta =  false;
+        try {
+            String consulta = "select imei from celular where imei = "+"'"+IMEI+"'";
+            Cursor temp = conexion.ejecutarSearch(consulta);
+            if (temp.getCount() > 0) {
+                respuesta = true;
+            } else {
+                conexion.cerrarConexion();
+                respuesta = false;
+            }
+        } catch (Exception e) {
+            Log.i("********ERROR REPETIDO", e.toString());
+        }
+        return respuesta;
     }
 
 }

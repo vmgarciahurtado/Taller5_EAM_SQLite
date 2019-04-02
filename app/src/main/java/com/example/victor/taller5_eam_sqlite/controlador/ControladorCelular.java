@@ -49,4 +49,8 @@ public class ControladorCelular {
     public List<Celular> listarCelulares(String propietario){
         return dao.listar(propietario);
     }
+
+    public boolean buscarCelularRepetido(String IMEI){
+        return dao.buscarRepetido(IMEI);
+    }
 }
