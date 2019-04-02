@@ -75,12 +75,12 @@ public class CelularDao {
 
     public boolean modificar(Celular celular) {
         String tabla = "celular";
-        String condicion = "propietario= " + celular.getPropietario();
+        String condicion = "IMEI= " + celular.getImei();
 
         ContentValues registro = new ContentValues();
 
-        registro.put("IMEI", celular.getImei());
         registro.put("marca", celular.getMarca());
+        registro.put("propietario", celular.getPropietario());
         registro.put("nombreCelular", celular.getNombre());
 
         return conexion.ejecutarUpdate(tabla, condicion, registro);
