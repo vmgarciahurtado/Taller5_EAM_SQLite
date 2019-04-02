@@ -26,25 +26,55 @@
         android:layout_height="wrap_content">
 
 
-        <EditText
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:id="@+id/campoImei"
-            android:layout_marginTop="20dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="IMEI Celular"/>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:id="@+id/spinnerMarca"
-            android:layout_marginTop="20dp"
             android:layout_height="wrap_content">
-        </Spinner>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:id="@+id/campoImei"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="IMEI Celular"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:id="@+id/spinnerMarca"
+                android:layout_marginTop="80dp"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+            <RelativeLayout
+                android:layout_marginTop="80dp"
+                android:layout_width="match_parent"
+                android:id="@+id/layoutSpinner"
+                android:visibility="invisible"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/campoMarca"
+                    android:textSize="18sp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imagenEditar"
+                    android:layout_width="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/editar" />
+            </RelativeLayout>
+
+        </RelativeLayout>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/campoNombre"
             android:hint="Nombre Celular"/>
 

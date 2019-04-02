@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.victor.taller5_eam_sqlite.R;
@@ -24,6 +27,9 @@ import java.util.Objects;
 public class RegistrarInventarioActivity extends AppCompatActivity {
 
     EditText campoImei, campoNombre;
+    TextView campoMarca;
+    RelativeLayout layout;
+    ImageView editarMarca;
     Spinner spinnerMarcar;
     ControladorCelular controlador;
     ControladorMarca controladorMarca;
@@ -39,8 +45,18 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         propietario = preferences.getString("usuario", "No existe el valor");
         campoImei = findViewById(R.id.campoImei);
         campoNombre = findViewById(R.id.campoNombre);
+        campoMarca = findViewById(R.id.campoMarca);
+        editarMarca = findViewById(R.id.imagenEditar);
+        editarMarca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinnerMarcar.setVisibility(View.VISIBLE);
+                layout.setVisibility(View.INVISIBLE);
+            }
+        });
         spinnerMarcar = findViewById(R.id.spinnerMarca);
         controlador = new ControladorCelular(this);
+        layout = findViewById(R.id.layoutSpinner);
         controladorMarca = new ControladorMarca(this);
         consultarMarcas();
     }
@@ -63,10 +79,15 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
             Celular celular = controlador.buscarPorImei(IMEI);
             if (celular != null) {
                 campoImei.setEnabled(false);
+                layout.setVisibility(View.VISIBLE);
+                spinnerMarcar.setVisibility(View.INVISIBLE);
                 //  for (int i = 0; i<spinnerMarcar.getCount();i++){
                 //   spinnerMarcar.getItemAtPosition(i).toString().equalsIgnoreCase(celular.getMarca());
                 // }
                 campoNombre.setText(celular.getNombre());
+                campoMarca.setText(celular.getMarca());
+                layout.setVisibility(View.VISIBLE);
+                spinnerMarcar.setVisibility(View.INVISIBLE);
             } else {
                 Toast.makeText(getApplicationContext(), "No existe ningun celular con el IMEI " + IMEI, Toast.LENGTH_SHORT).show();
             }
@@ -93,6 +114,9 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         String IMEI = campoImei.getText().toString();
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
+        spinnerMarcar.setVisibility(View.VISIBLE);
+        layout.setVisibility(View.INVISIBLE);
+
         if(IMEI!=null || marca !=null || nombre!=null){
             if(controlador.modificarCelular(IMEI, marca, nombre, propietario)){
                 vaciarCampos();
