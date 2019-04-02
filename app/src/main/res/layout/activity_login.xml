@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/fondo"
     tools:context=".vista.LoginActivity"
+    android:gravity="center_horizontal"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -11,28 +13,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="22dp"
-        android:text="Bienvenido a la aplicacion"
-        android:textColor="#000"
-        android:textSize="20dp"
+        android:layout_marginTop="42dp"
+        android:text="Gestion de celulares"
+        android:textColor="#fff"
+        android:textSize="28dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="43dp"
+        android:text="¡Bienvenido!"
+        android:textColor="#fff"
+        android:textSize="22dp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="12dp">
 
         <EditText
             android:id="@+id/campousuario"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#fff"
+            android:ems="10"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:hint="ingrese su usuario" />
 
         <EditText
             android:id="@+id/campoContraseña"
-            android:layout_width="match_parent"
+            android:backgroundTint="#fff"
+            android:ems="10"
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:hint="ingrese su contraseña"
             android:inputType="textPassword" />
 
@@ -40,18 +62,33 @@
 
     <Button
         android:id="@+id/btnIngresar"
-        android:layout_width="match_parent"
-        android:onClick="buscar"
+        android:layout_width="142dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:text="Ingresar" />
+        android:layout_marginTop="52dp"
+        android:background="@drawable/borde_redondo"
+        android:textColor="#fff"
+        android:onClick="buscar"
+        android:text="Continuar" />
 
-    <Button
+<!--    <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:onClick="registro"
+        android:background="@drawable/borde_redondo"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:text="Registrarse" />
+        android:text="Registrarse" />-->
+
+    <TextView
+        android:id="@+id/txtVentanaInicioRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:onClick="registro"
+        android:text="Registrarse"
+        android:textColor="#fff"
+        android:textSize="12dp"
+        tools:layout_editor_absoluteX="131dp"
+        tools:layout_editor_absoluteY="42dp" />
 
 </LinearLayout>

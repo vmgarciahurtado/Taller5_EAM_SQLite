@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     android:orientation="vertical"
     tools:context=".vista.MainActivity">
 
@@ -12,10 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="43dp"
+        android:text="¡Bienvenido!"
         android:layout_marginTop="22dp"
-        android:text="Bienvenido..."
-        android:textColor="#000"
-        android:textSize="20dp"
+        android:textColor="#fff"
+        android:textSize="22dp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -31,7 +33,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/borde_redondo"
             android:onClick="onclick"
             android:text="Registrar marca celular"
             android:textColor="@android:color/background_light"
@@ -44,7 +46,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/borde_redondo"
             android:onClick="onclick"
             android:text="Nuevo registro inventario"
             android:textColor="@android:color/background_light"
@@ -57,7 +59,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
-            android:background="@android:color/background_dark"
+            android:background="@drawable/borde_redondo"
             android:onClick="onclick"
             android:text="Ver listado inventario"
             android:textColor="@android:color/background_light"

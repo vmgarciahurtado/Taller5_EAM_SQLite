@@ -64,16 +64,21 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         String IMEI = campoImei.getText().toString();
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
-        if (controlador.buscarCelularRepetido(IMEI) == false) {
-            if (controlador.guardarCelular(IMEI, marca, nombre, propietario)) {
-                vaciarCampos();
-                Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
+        if (!IMEI.equals("") && !marca.equals("") && !nombre.equals("")){
+            if (controlador.buscarCelularRepetido(IMEI) == false) {
+                if (controlador.guardarCelular(IMEI, marca, nombre, propietario)) {
+                    vaciarCampos();
+                    Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "El imei que intentas almacenar, ya esta agregado", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(getApplicationContext(), "El imei que intentas almacenar, ya esta agregado", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "Existen campos vacios", Toast.LENGTH_SHORT).show();
         }
+
 
     }
 
@@ -118,7 +123,8 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
         visibilidad(1);
-        if (IMEI != null || marca != null || nombre != null) {
+        //if (IMEI != null || marca != null || nombre != null) {
+        if (!IMEI.equals("") && !marca.equals("") && !nombre.equals("")){
             if (controlador.modificarCelular(IMEI, marca, nombre, propietario)) {
                 vaciarCampos();
                 Toast.makeText(getApplicationContext(), "Los datos se modificaron correctamente", Toast.LENGTH_SHORT).show();
@@ -160,7 +166,7 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
             for (int i = 0; i < marcas.size(); i++) {
                 comboAdapter.add(marcas.get(i).getMarca());
             }
-            adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, comboAdapter);
+            adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spinner_item, comboAdapter);
             spinnerMarcar.setAdapter(adapter);
         }
     }

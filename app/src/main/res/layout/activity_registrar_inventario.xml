@@ -4,26 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo"
     android:orientation="vertical"
     tools:context="com.example.victor.taller5_eam_sqlite.vista.RegistrarInventarioActivity">
-
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="23dp"
         android:layout_marginTop="22dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:text="Ingresar inventario"/>
+        android:text="Ingresar inventario"
+        android:textColor="#fff"
+        android:textSize="22dp"
+        android:textStyle="bold" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="13dp"
-        android:layout_height="wrap_content">
+        android:paddingBottom="10dp">
 
 
         <RelativeLayout
@@ -31,94 +32,126 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="match_parent"
                 android:id="@+id/campoImei"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="IMEI Celular"/>
-
-            <Spinner
                 android:layout_width="match_parent"
-                android:id="@+id/spinnerMarca"
-                android:layout_marginTop="80dp"
-                android:layout_height="wrap_content">
-            </Spinner>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="52dp"
+                android:layout_marginRight="52dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#fff"
+                android:hint="IMEI Celular"
+                android:inputType="number"
+                android:textColor="#fff"
+                android:textColorHint="#fff" />
 
             <RelativeLayout
-                android:layout_marginTop="80dp"
-                android:layout_width="match_parent"
                 android:id="@+id/layoutSpinner"
-                android:visibility="invisible"
+                android:layout_width="322dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="53dp"
+                android:layout_marginRight="59dp"
+                android:layout_marginTop="65dp"
                 android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:visibility="invisible">
 
                 <TextView
-                    android:layout_width="wrap_content"
                     android:id="@+id/campoMarca"
-                    android:textSize="18sp"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/imagenEditar"
                     android:layout_width="22dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
-                    android:layout_height="wrap_content"
                     android:src="@drawable/editar" />
+
             </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/spinnerMarca"
+                android:layout_width="322dp"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/campoImei"
+                android:layout_alignStart="@+id/campoImei"
+                android:layout_alignTop="@+id/layoutSpinner"></Spinner>
 
         </RelativeLayout>
 
         <EditText
+            android:id="@+id/campoNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/campoNombre"
-            android:hint="Nombre Celular"/>
+            android:layout_marginLeft="52dp"
+            android:layout_marginRight="52dp"
+            android:layout_marginTop="0dp"
+            android:backgroundTint="#fff"
+            android:layout_marginBottom="30dp"
+            android:hint="Nombre Celular"
+            android:textColor="#fff"
+            android:textColorHint="#fff" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="22dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnGuardar"
-            android:layout_width="match_parent"
+            android:layout_width="322dp"
+            android:textColor="#fff"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/borde_redondo"
             android:layout_height="wrap_content"
             android:onClick="guardar"
             android:text="Guardar" />
 
         <Button
-            android:layout_width="match_parent"
-            android:text="Buscar"
-            android:onClick="buscar"
             android:id="@+id/btnBuscar"
-            android:layout_height="wrap_content" />
+            android:layout_width="322dp"
+            android:textColor="#fff"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/borde_redondo"
+            android:layout_height="wrap_content"
+            android:onClick="buscar"
+            android:text="Buscar" />
 
         <Button
-            android:layout_width="match_parent"
-            android:text="Eliminar"
             android:id="@+id/btnEliminar"
+            android:layout_width="322dp"
+            android:textColor="#fff"
+            android:layout_marginBottom="6dp"
+            android:layout_height="wrap_content"
             android:onClick="eliminar"
-            android:layout_height="wrap_content" />
+            android:background="@drawable/borde_redondo"
+            android:text="Eliminar" />
 
         <Button
-            android:layout_width="match_parent"
-            android:onClick="modificar"
-            android:text="Modificar"
             android:id="@+id/btnModificar"
-            android:layout_height="wrap_content" />
+            android:layout_width="322dp"
+            android:textColor="#fff"
+            android:layout_marginBottom="6dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borde_redondo"
+            android:onClick="modificar"
+            android:text="Modificar" />
 
         <Button
-            android:layout_width="match_parent"
-            android:text="Listar"
-            android:onClick="listar"
             android:id="@+id/btnListar"
-            android:layout_height="wrap_content" />
+            android:layout_width="322dp"
+            android:textColor="#fff"
+            android:layout_marginBottom="6dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borde_redondo"
+            android:onClick="listar"
+            android:text="Listar" />
 
     </LinearLayout>
 

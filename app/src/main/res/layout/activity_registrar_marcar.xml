@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="@drawable/fondo"
     tools:context=".vista.RegistrarMarcarActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
@@ -24,14 +25,14 @@
 
         <EditText
             android:id="@+id/txtNombreMarca"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:textSize="15dp"
             android:gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:hint="Nombre de la marca"
-            android:backgroundTint="@android:color/holo_blue_light"
+            android:backgroundTint="#fff"
             android:textColorHint="@android:color/background_light"
             android:textColor="@android:color/background_light"
             android:layout_marginLeft="30dp"
@@ -41,14 +42,14 @@
 
         <EditText
             android:id="@+id/txtDescripcionMarca"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:textSize="15dp"
             android:gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:hint="Descripcion"
-            android:backgroundTint="@android:color/holo_blue_light"
+            android:backgroundTint="#fff"
             android:textColorHint="@android:color/background_light"
             android:textColor="@android:color/background_light"
             android:layout_marginLeft="30dp"
@@ -58,12 +59,12 @@
 
         <Button
             android:id="@+id/btnGuardarMarca"
-            android:layout_width="match_parent"
+            android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:onClick="guardar"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/darker_gray"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/borde_redondo"
             android:textColor="@android:color/background_light"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
