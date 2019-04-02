@@ -49,12 +49,17 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         String IMEI = campoImei.getText().toString();
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
-        if (controlador.guardarCelular(IMEI, marca, nombre, propietario)) {
-            vaciarCampos();
-            Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
+        if(controlador.buscarCelularRepetido(IMEI)==false){
+            if (controlador.guardarCelular(IMEI, marca, nombre, propietario)) {
+                vaciarCampos();
+                Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "El imei que intentas almacenar, ya esta agregado", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public void buscar(View view) {
@@ -68,7 +73,7 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
                 // }
                 campoNombre.setText(celular.getNombre());
             } else {
-                Toast.makeText(getApplicationContext(), "No existe ningun celular con el IMEI " + IMEI, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "No existe ningún celular con el IMEI " + IMEI, Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(getApplicationContext(), "El campo IMEI esta vacio", Toast.LENGTH_SHORT).show();
