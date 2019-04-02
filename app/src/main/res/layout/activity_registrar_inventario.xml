@@ -57,7 +57,6 @@
                     android:layout_width="wrap_content"
                     android:id="@+id/campoMarca"
                     android:textSize="18sp"
-                    android:layout_marginLeft="5dp"
                     android:layout_height="wrap_content" />
 
                 <ImageView

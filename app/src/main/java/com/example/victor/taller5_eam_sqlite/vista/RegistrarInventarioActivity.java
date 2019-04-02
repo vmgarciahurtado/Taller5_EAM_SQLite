@@ -50,8 +50,7 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         editarMarca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spinnerMarcar.setVisibility(View.VISIBLE);
-                layout.setVisibility(View.INVISIBLE);
+                visibilidad(1);
             }
         });
         spinnerMarcar = findViewById(R.id.spinnerMarca);
@@ -65,14 +64,14 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         String IMEI = campoImei.getText().toString();
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
-        if(controlador.buscarCelularRepetido(IMEI)==false){
+        if (controlador.buscarCelularRepetido(IMEI) == false) {
             if (controlador.guardarCelular(IMEI, marca, nombre, propietario)) {
                 vaciarCampos();
                 Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Error al almacenar la información, intenta de nuevo", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             Toast.makeText(getApplicationContext(), "El imei que intentas almacenar, ya esta agregado", Toast.LENGTH_SHORT).show();
         }
 
@@ -84,15 +83,13 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
             Celular celular = controlador.buscarPorImei(IMEI);
             if (celular != null) {
                 campoImei.setEnabled(false);
-                layout.setVisibility(View.VISIBLE);
-                spinnerMarcar.setVisibility(View.INVISIBLE);
+
                 //  for (int i = 0; i<spinnerMarcar.getCount();i++){
                 //   spinnerMarcar.getItemAtPosition(i).toString().equalsIgnoreCase(celular.getMarca());
                 // }
                 campoNombre.setText(celular.getNombre());
                 campoMarca.setText(celular.getMarca());
-                layout.setVisibility(View.VISIBLE);
-                spinnerMarcar.setVisibility(View.INVISIBLE);
+                visibilidad(2);
             } else {
                 Toast.makeText(getApplicationContext(), "No existe ningún celular con el IMEI " + IMEI, Toast.LENGTH_SHORT).show();
             }
@@ -103,6 +100,7 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
 
     public void eliminar(View view) {
         String IMEI = campoImei.getText().toString();
+        visibilidad(1);
         if (!IMEI.equals("")) {
             if (controlador.eliminarPorImei(IMEI)) {
                 vaciarCampos();
@@ -119,17 +117,15 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         String IMEI = campoImei.getText().toString();
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
-        spinnerMarcar.setVisibility(View.VISIBLE);
-        layout.setVisibility(View.INVISIBLE);
-
-        if(IMEI!=null || marca !=null || nombre!=null){
-            if(controlador.modificarCelular(IMEI, marca, nombre, propietario)){
+        visibilidad(1);
+        if (IMEI != null || marca != null || nombre != null) {
+            if (controlador.modificarCelular(IMEI, marca, nombre, propietario)) {
                 vaciarCampos();
                 Toast.makeText(getApplicationContext(), "Los datos se modificaron correctamente", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 Toast.makeText(getApplicationContext(), "Error al modificar el celular, intenta más tarde", Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             Toast.makeText(getApplicationContext(), "Hay campos vacios", Toast.LENGTH_SHORT).show();
         }
     }
@@ -138,6 +134,21 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListaInventarioActivity.class);
         startActivity(intent);
         vaciarCampos();
+        visibilidad(1);
+    }
+
+    public void visibilidad(int x) {
+        switch (x) {
+            case 1:
+                spinnerMarcar.setVisibility(View.VISIBLE);
+                layout.setVisibility(View.INVISIBLE);
+                break;
+
+            case 2:
+                spinnerMarcar.setVisibility(View.INVISIBLE);
+                layout.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
 
