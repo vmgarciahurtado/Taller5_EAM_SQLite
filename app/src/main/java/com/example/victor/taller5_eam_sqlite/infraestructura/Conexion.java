@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class Conexion extends SQLiteOpenHelper {
-    private static final String database = "gestion.db";
+    private static final String database = "celulares.db";
     //Para manipular el registro que retorna la base de datos
     private static final SQLiteDatabase.CursorFactory factory = null;
     private static final int version = 1;
@@ -27,6 +27,14 @@ public class Conexion extends SQLiteOpenHelper {
     }
 
     @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        if (!db.isReadOnly()){
+            db.execSQL("PRAGMA foreign_keys=ON;");
+        }
+    }
+
+    @Override
     public void onCreate(SQLiteDatabase bd) {
         bd.execSQL("create table usuario(" +
                 "nombreCompleto text, " +
@@ -36,14 +44,14 @@ public class Conexion extends SQLiteOpenHelper {
         );
         bd.execSQL("create table marca(" +
                 "nombreMarca text, " +
-                "propietario text, " +
+                "propietario text REFERENCES usuario ON DELETE CASCADE, " +
                 "descripcionMarca text" +
                 ")"
         );
         bd.execSQL("create table celular(" +
                 "IMEI text primary key," +
                 "marca text, " +
-                "propietario text, " +
+                "propietario text REFERENCES usuario ON DELETE CASCADE, " +
                 "nombreCelular text" +
                 ")"
         );
