@@ -12,10 +12,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class Conexion extends SQLiteOpenHelper {
-    private static final String database = "celulares.db";
+    private static final String database = "celularessss.db";
     //Para manipular el registro que retorna la base de datos
     private static final SQLiteDatabase.CursorFactory factory = null;
-    private static final int version = 1;
+    private static final int version = 2;
     SQLiteDatabase bd;
 
     public Conexion(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -42,12 +42,15 @@ public class Conexion extends SQLiteOpenHelper {
                 "password text" +
                 ")"
         );
+
         bd.execSQL("create table marca(" +
+                "idMarca integer primary key autoincrement, " +
                 "nombreMarca text, " +
                 "propietario text REFERENCES usuario ON DELETE CASCADE, " +
                 "descripcionMarca text" +
                 ")"
         );
+
         bd.execSQL("create table celular(" +
                 "IMEI text primary key," +
                 "marca text, " +
