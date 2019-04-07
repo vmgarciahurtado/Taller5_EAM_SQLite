@@ -30,6 +30,7 @@ public class CelularDao {
         registro.put("marca", celular.getMarca());
         registro.put("nombreCelular", celular.getNombre());
         registro.put("propietario", celular.getPropietario());
+        registro.put("IdMarca", celular.getIdMarca());
         return conexion.ejecutarInsert("celular", registro);
     }
 
@@ -41,7 +42,7 @@ public class CelularDao {
         //Encontro algun registro?
         if (temp.getCount() > 0) {//Si el temp es mayor a cero es porque encontro un dato
             temp.moveToFirst();//Se posiciona en el primer dato que encontro
-            celular = new Celular(temp.getString(0), temp.getString(1), temp.getString(2), propietario);
+            celular = new Celular(temp.getString(0), temp.getString(1), temp.getString(2), propietario,temp.getString(3));
             /*
             El columnindex es la posicion que tiene ese campo en la tabla.
             */
@@ -83,6 +84,8 @@ public class CelularDao {
         registro.put("marca", celular.getMarca());
         registro.put("propietario", celular.getPropietario());
         registro.put("nombreCelular", celular.getNombre());
+        registro.put("nombreCelular", celular.getNombre());
+        registro.put("IdMarca", celular.getIdMarca());
 
         return conexion.ejecutarUpdate(tabla, condicion, registro);
     }
@@ -94,7 +97,7 @@ public class CelularDao {
 
         if (temp.moveToFirst()) {
             do {
-                Celular celular = new Celular(temp.getString(0), temp.getString(1), temp.getString(2), temp.getString(3));//,(temp.getString(3)),temp.getString(4)
+                Celular celular = new Celular(temp.getString(0), temp.getString(1), temp.getString(2), temp.getString(3),"");//,(temp.getString(3)),temp.getString(4)
                 listaCelulares.add(celular);
             } while (temp.moveToNext());
         }

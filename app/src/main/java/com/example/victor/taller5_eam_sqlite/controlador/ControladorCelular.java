@@ -19,8 +19,8 @@ public class ControladorCelular {
         dao = new CelularDao(activity);
     }
 
-    public boolean guardarCelular(String imei,String marca,String nombre,String propietario){
-        Celular celular = new Celular(imei,marca,nombre,propietario);
+    public boolean guardarCelular(String imei, String marca, String nombre, String propietario, String idMarca){
+        Celular celular = new Celular(imei,marca,nombre,propietario,idMarca);
         return dao.guardar(celular);
     }
     public Celular buscarCelular(String propietario){
@@ -32,17 +32,17 @@ public class ControladorCelular {
     }
 
     public boolean eliminarCelular(String propietario){
-        Celular celular = new Celular("", "", "", propietario);
+        Celular celular = new Celular("", "", "", propietario,"");
         return dao.eliminar(celular);
     }
 
     public boolean eliminarPorImei(String IMEI){
-        Celular celular = new Celular(IMEI,"","","");
+        Celular celular = new Celular(IMEI,"","","","");
         return  dao.eliminarPorImei(celular);
     }
 
-    public boolean modificarCelular(String imei,String marca,String nombre,String propietario){
-        Celular celular = new Celular(imei,marca,nombre,propietario);
+    public boolean modificarCelular(String imei,String marca,String nombre,String propietario,String idMarca){
+        Celular celular = new Celular(imei,marca,nombre,propietario,idMarca);
         return dao.modificar(celular);
     }
 

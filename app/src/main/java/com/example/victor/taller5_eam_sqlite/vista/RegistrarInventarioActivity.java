@@ -63,10 +63,12 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
     public void guardar(View view) {
         String IMEI = campoImei.getText().toString();
         String marca = spinnerMarcar.getSelectedItem().toString();
+        String idMarca = String.valueOf(spinnerMarcar.getSelectedItemPosition()+1);
+        Toast.makeText(this, "IdMarca: " + idMarca, Toast.LENGTH_SHORT).show();
         String nombre = campoNombre.getText().toString();
         if (!IMEI.equals("") && !marca.equals("") && !nombre.equals("")){
             if (controlador.buscarCelularRepetido(IMEI) == false) {
-                if (controlador.guardarCelular(IMEI, marca, nombre, propietario)) {
+                if (controlador.guardarCelular(IMEI, marca, nombre, propietario,idMarca)) {
                     vaciarCampos();
                     Toast.makeText(getApplicationContext(), "Los datos se almacenaron correctamente", Toast.LENGTH_SHORT).show();
                 } else {
@@ -122,10 +124,11 @@ public class RegistrarInventarioActivity extends AppCompatActivity {
         String IMEI = campoImei.getText().toString();
         String marca = spinnerMarcar.getSelectedItem().toString();
         String nombre = campoNombre.getText().toString();
+        String idMarca = String.valueOf(spinnerMarcar.getSelectedItemPosition()+1);
         visibilidad(1);
         //if (IMEI != null || marca != null || nombre != null) {
         if (!IMEI.equals("") && !marca.equals("") && !nombre.equals("")){
-            if (controlador.modificarCelular(IMEI, marca, nombre, propietario)) {
+            if (controlador.modificarCelular(IMEI, marca, nombre, propietario,idMarca)) {
                 vaciarCampos();
                 Toast.makeText(getApplicationContext(), "Los datos se modificaron correctamente", Toast.LENGTH_SHORT).show();
             } else {
